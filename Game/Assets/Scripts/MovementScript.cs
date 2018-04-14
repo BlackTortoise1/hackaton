@@ -122,7 +122,7 @@ public class MovementScript : MonoBehaviour {
         }
 
 
-        if (hit == 1 && !inHit && !inAir)
+        if (hit == 1 && !inHit)
         {
             animator.SetBool("Hit", true);
             StartInHit();
@@ -133,7 +133,7 @@ public class MovementScript : MonoBehaviour {
             animator.SetBool("Hit", false);
         }
 
-        if(slash == 1 && !inHit && !inAir)
+        if(slash == 1 && !inHit)
         {
             animator.SetBool("Slash", true);
             StartInHit();
