@@ -12,10 +12,11 @@ public class MovementScript : MonoBehaviour {
     float hit;
     float slash;
     bool inHit;
+    bool inJump;
+    bool inSquash;
+    bool inCasting;
     [HideInInspector]
     public bool canCast;
-    [HideInInspector]
-    public int type = 0;
     //Camera camera;
 
     //Settings
@@ -26,8 +27,6 @@ public class MovementScript : MonoBehaviour {
     public string vertical;
     public string punchAttack;
     public string slashAttack;
-    public GameObject FireAttack;
-    public GameObject IceAttack;
     //Animator
     Animator animator;
 
@@ -36,9 +35,39 @@ public class MovementScript : MonoBehaviour {
         inHit = true;
     }
 
+    void StartJump()
+    {
+        inJump = true;
+    }
+
+    void EndJump()
+    {
+        inJump = false;
+    }
+
+    void StartSquash()
+    {
+        inSquash = true;
+    }
+
+    void EndSquash()
+    {
+        inSquash = false;
+    }
+
     void EndInHit()
     {
         inHit = false;
+    }
+
+    void StartCast()
+    {
+        inCasting = true;
+    }
+
+    void EndCast()
+    {
+        inCasting = false;
     }
 
     public bool isInHit()
@@ -50,7 +79,8 @@ public class MovementScript : MonoBehaviour {
     //   camera = FindObjectOfType<Camera>();
         animator = GetComponent<Animator>();
         inHit = false;
-        type = 1;
+        inJump = false;
+        inSquash = false;
 
     }
 
@@ -59,23 +89,37 @@ public class MovementScript : MonoBehaviour {
         //Debug.Log("Started coroutine");
         
         string name = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        //Debug.Log(name);
+        Debug.Log(name);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
 
-     
-        EndInHit();
-        
+        if (name.CompareTo("Punch") == 0)
+        {
+            //Debug.Log("PunchEnd");
+            EndInHit();
+        }
+
+        if (name.CompareTo("Slash") == 0)
+        {
+            Debug.Log("SlashEnd");
+            EndInHit();
+        }
+
+        if (name.CompareTo("Jump") == 0)
+        {
+            //Debug.Log("JumpEnd");
+            EndJump();
+        }
+
+        if (name.CompareTo("Squash") == 0)
+        {
+            //Debug.Log("SquashEnd");
+            EndSquash();
+        }
+
         if (name.CompareTo("SpellCast") == 0)
         {
-            Debug.Log("SpellCast");
-            if (type == 1)
-            {
-                GameObject attack = Instantiate(FireAttack);
-                attack.transform.position = transform.position + transform.right.normalized;
-                attack.transform.LookAt(transform);
-                attack.transform.Rotate(0, 180, 0);
-                Destroy(attack, 5);
-            }
+            //Debug.Log("SquashEnd");
+            EndCast();
         }
     }
 
@@ -94,15 +138,20 @@ public class MovementScript : MonoBehaviour {
         float mouseInput = Input.GetAxis("Mouse X");
         Vector3 lookhere = new Vector3(0, mouseInput, 0);
         transform.Rotate(lookhere);
-
-        if (v != 0)
-            transform.position += v * transform.right * speed * Time.deltaTime;   
-        if (h != 0)
-            transform.position -= h * transform.forward * speed * Time.deltaTime;
-
         
         if (movement != Vector3.zero && !inHit)
         {
+            if(v > 0)
+                transform.position += transform.right * speed * Time.deltaTime;
+            if(v < 0)
+                transform.position -= transform.right * speed * Time.deltaTime;
+
+            if (h < 0)
+                transform.position += transform.forward * speed * Time.deltaTime;
+            if (h > 0)
+                transform.position -= transform.forward * speed * Time.deltaTime;
+
+
             animator.SetBool("Walk", true);
         }
         else
@@ -111,7 +160,8 @@ public class MovementScript : MonoBehaviour {
         }
 
 
-        if (hit == 1 && !inHit)
+
+        if(hit == 1 && !inJump && !inHit)
         {
             animator.SetBool("Hit", true);
             StartInHit();
@@ -122,10 +172,10 @@ public class MovementScript : MonoBehaviour {
             animator.SetBool("Hit", false);
         }
 
-        if(slash == 1 && !inHit)
+        if(slash == 1 && !inJump && !inHit)
         {
             animator.SetBool("Slash", true);
-            StartInHit();
+            StartCast();
             return;
         }
         else
@@ -133,14 +183,14 @@ public class MovementScript : MonoBehaviour {
             animator.SetBool("Slash", false);
         }
         
-        if(j>0 && !inHit)
+        if(j>0 && !inJump && !inHit)
         {
             animator.SetBool("Jump", true);
-            StartInHit();
             if(rb != null)
             {
                 rb.AddForce(rb.mass * new Vector3(0, jumpPower, 0),ForceMode.Impulse);
             }
+            StartJump();
             return;
         }
         else
@@ -154,7 +204,7 @@ public class MovementScript : MonoBehaviour {
     {
         if(collision.collider.CompareTag("Ground"))
         {
-            EndInHit();
+            EndJump();
         }
 
     }
