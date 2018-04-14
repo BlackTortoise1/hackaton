@@ -28,7 +28,7 @@ public class CameraFallowScript : MonoBehaviour {
         
         float OxRot = verticalSpeed * Input.GetAxis("Mouse Y");
         OYOffset += OxRot;
-        print(OYOffset);
+        //print(OYOffset);
         OYOffset = Mathf.Clamp(OYOffset, minOYOffset, maxOYOffset);
 
         transform.LookAt(player.transform.position + new Vector3(0, OYOffset, 0));
