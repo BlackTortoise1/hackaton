@@ -14,6 +14,9 @@ public class MovementScript : MonoBehaviour {
     bool inHit;
     bool inJump;
     bool inSquash;
+    bool inCasting;
+    [HideInInspector]
+    public bool canCast;
     //Camera camera;
 
     //Settings
@@ -57,6 +60,16 @@ public class MovementScript : MonoBehaviour {
         inHit = false;
     }
 
+    void StartCast()
+    {
+        inCasting = true;
+    }
+
+    void EndCast()
+    {
+        inCasting = false;
+    }
+
     public bool isInHit()
     {
         return inHit;
@@ -76,7 +89,7 @@ public class MovementScript : MonoBehaviour {
         //Debug.Log("Started coroutine");
         
         string name = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        //Debug.Log(name);
+        Debug.Log(name);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
 
         if (name.CompareTo("Punch") == 0)
@@ -87,7 +100,7 @@ public class MovementScript : MonoBehaviour {
 
         if (name.CompareTo("Slash") == 0)
         {
-            //Debug.Log("SlashEnd");
+            Debug.Log("SlashEnd");
             EndInHit();
         }
 
@@ -101,6 +114,12 @@ public class MovementScript : MonoBehaviour {
         {
             //Debug.Log("SquashEnd");
             EndSquash();
+        }
+
+        if (name.CompareTo("SpellCast") == 0)
+        {
+            //Debug.Log("SquashEnd");
+            EndCast();
         }
     }
 
@@ -145,6 +164,8 @@ public class MovementScript : MonoBehaviour {
         if(hit == 1 && !inJump && !inHit)
         {
             animator.SetBool("Hit", true);
+            StartInHit();
+            return;
         }
         else
         {
@@ -154,6 +175,8 @@ public class MovementScript : MonoBehaviour {
         if(slash == 1 && !inJump && !inHit)
         {
             animator.SetBool("Slash", true);
+            StartCast();
+            return;
         }
         else
         {
@@ -168,6 +191,7 @@ public class MovementScript : MonoBehaviour {
                 rb.AddForce(rb.mass * new Vector3(0, jumpPower, 0),ForceMode.Impulse);
             }
             StartJump();
+            return;
         }
         else
         {
