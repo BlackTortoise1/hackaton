@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canCast: 0
+  type: 0
   speed: 1
   rotationSpeed: 0.5
   jumpPower: 3
@@ -288,6 +289,8 @@ MonoBehaviour:
   vertical: Vertical0
   punchAttack: P0_Fire1
   slashAttack: P0_Fire2
+  FireAttack: {fileID: 0}
+  IceAttack: {fileID: 0}
 --- !u!54 &92186492
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -317,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canCast: 0
+  type: 0
   speed: 1
   rotationSpeed: 0.5
   jumpPower: 3
@@ -324,6 +328,8 @@ MonoBehaviour:
   vertical: Vertical0
   punchAttack: P0_Fire1
   slashAttack: P0_Fire2
+  FireAttack: {fileID: 1476112772782752, guid: 419e25d57e8b8404fb13b316097b1da2, type: 2}
+  IceAttack: {fileID: 1486934606217302, guid: 2f3c3377bed80274991b45bb3124618f, type: 2}
 --- !u!95 &92186494
 Animator:
   serializedVersion: 3
