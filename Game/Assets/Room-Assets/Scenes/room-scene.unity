@@ -247,7 +247,6 @@ GameObject:
   - component: {fileID: 92186494}
   - component: {fileID: 92186493}
   - component: {fileID: 92186492}
-  - component: {fileID: 92186491}
   - component: {fileID: 92186490}
   - component: {fileID: 92186495}
   m_Layer: 0
@@ -268,29 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd9452a4b44a5a45a17f15aa99c31d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &92186491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114012833384337708, guid: 14b83f00ffb66bc4988b28022a58962d,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 92186488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d602a06f1c11d7f4f88fb5bb0200a35c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canCast: 0
-  type: 0
-  speed: 1
-  rotationSpeed: 0.5
-  jumpPower: 3
-  horizontal: Horizontal0
-  vertical: Vertical0
-  punchAttack: P0_Fire1
-  slashAttack: P0_Fire2
-  FireAttack: {fileID: 0}
-  IceAttack: {fileID: 0}
 --- !u!54 &92186492
 Rigidbody:
   m_ObjectHideFlags: 0
