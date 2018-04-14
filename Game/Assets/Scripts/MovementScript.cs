@@ -72,19 +72,11 @@ public class MovementScript : MonoBehaviour {
 
     IEnumerator AnimEnder()
     {
-        string name = animator.GetCurrentAnimatorClipInfo(0)[0].
-
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
             Debug.Log("PunchEnd");
-            EndInHit();
-        }
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Slash"))
-        {
-            Debug.Log("SlashEnd");
             EndInHit();
         }
 
@@ -94,7 +86,7 @@ public class MovementScript : MonoBehaviour {
             EndJump();
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Squash"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
         {
             Debug.Log("SquashEnd");
             EndSquash();
