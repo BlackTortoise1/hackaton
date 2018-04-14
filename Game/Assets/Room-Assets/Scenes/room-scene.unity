@@ -248,8 +248,8 @@ GameObject:
   - component: {fileID: 92186493}
   - component: {fileID: 92186492}
   - component: {fileID: 92186491}
-  - component: {fileID: 92186489}
   - component: {fileID: 92186490}
+  - component: {fileID: 92186495}
   m_Layer: 0
   m_Name: Player
   m_TagString: Hero
@@ -257,17 +257,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &92186489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 92186488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56754a0cf51cb5e498a1072438e954ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &92186490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,17 +265,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 92186488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b160dda6112aa542833e4bf038d41d7, type: 3}
+  m_Script: {fileID: 11500000, guid: afd9452a4b44a5a45a17f15aa99c31d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeTillDeath: {fileID: 1809140368}
-  Ability: {fileID: 1516117868}
-  DeadTimeLeft: {fileID: 720064609}
-  EnergyBar: {fileID: 2093245783}
-  EnergyBarFillSpeed: 0.2
-  GuardianHappinessBar: {fileID: 1270657953}
-  ColorChangeSpeed: 0.1
-  GuardianHappinessDecreaseSpeed: 0.06
 --- !u!114 &92186491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +342,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &92186495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 92186488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb3b1c64975f0440b77d316e45042d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeTillDeath: {fileID: 1809140368}
+  Ability: {fileID: 1516117868}
+  DeadTimeLeft: {fileID: 720064609}
+  EnergyBar: {fileID: 2093245783}
+  EnergyBarFillSpeed: 0.2
+  GuardianHappinessBar: {fileID: 1270657953}
+  ColorChangeSpeed: 0.1
+  GuardianHappinessDecreaseSpeed: 0.1
 --- !u!224 &92186496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.977, y: 2.31}
+  m_AnchoredPosition: {x: 8.977, y: 2.305}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &134156610
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 155737121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac16b953274337408590f486d062b61, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c4516a5d8141f84083947c45a638331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player_pos: {x: 0, y: 0, z: 0}
@@ -2023,6 +2023,7 @@ GameObject:
   - component: {fileID: 921148426}
   - component: {fileID: 921148425}
   - component: {fileID: 921148430}
+  - component: {fileID: 921148431}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2113,6 +2114,17 @@ MonoBehaviour:
   verticalSpeed: 0.5
   maxOYOffset: 1.1
   minOYOffset: -1.5
+--- !u!114 &921148431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 921148424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34382083ad114a07d000fbfb8d76c639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &923906139
 Prefab:
   m_ObjectHideFlags: 0
@@ -2817,7 +2829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294, y: 100}
+  m_AnchoredPosition: {x: -310, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1270657953
@@ -3114,7 +3126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470007015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e8bd27018440c418bafc40522de840, type: 3}
+  m_Script: {fileID: 11500000, guid: 44926332bb86086428f370b4698add06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &1470007017
