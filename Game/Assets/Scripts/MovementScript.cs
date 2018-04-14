@@ -14,11 +14,15 @@ public class MovementScript : MonoBehaviour {
     bool inHit;
     bool inJump;
     bool inSquash;
+    bool inCasting;
+    [HideInInspector]
+    public bool canCast;
     //Camera camera;
 
     //Settings
     public float speed = 1f;
     public float rotationSpeed = 0.5f;
+    public float jumpPower = 3f;
     public string horizontal;
     public string vertical;
     public string punchAttack;
@@ -56,6 +60,16 @@ public class MovementScript : MonoBehaviour {
         inHit = false;
     }
 
+    void StartCast()
+    {
+        inCasting = true;
+    }
+
+    void EndCast()
+    {
+        inCasting = false;
+    }
+
     public bool isInHit()
     {
         return inHit;
@@ -72,24 +86,40 @@ public class MovementScript : MonoBehaviour {
 
     IEnumerator AnimEnder()
     {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        //Debug.Log("Started coroutine");
+        
+        string name = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        Debug.Log(name);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        if (name.CompareTo("Punch") == 0)
         {
-            Debug.Log("PunchEnd");
+            //Debug.Log("PunchEnd");
             EndInHit();
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        if (name.CompareTo("Slash") == 0)
         {
-            Debug.Log("JumpEnd");
+            Debug.Log("SlashEnd");
+            EndInHit();
+        }
+
+        if (name.CompareTo("Jump") == 0)
+        {
+            //Debug.Log("JumpEnd");
             EndJump();
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        if (name.CompareTo("Squash") == 0)
         {
-            Debug.Log("SquashEnd");
+            //Debug.Log("SquashEnd");
             EndSquash();
+        }
+
+        if (name.CompareTo("SpellCast") == 0)
+        {
+            //Debug.Log("SquashEnd");
+            EndCast();
         }
     }
 
@@ -97,8 +127,10 @@ public class MovementScript : MonoBehaviour {
     void FixedUpdate() {
         h = Input.GetAxis(horizontal);
         v = Input.GetAxis(vertical);
+        float j = Input.GetAxis("Jump");
         hit = Input.GetAxis(punchAttack);
         slash = Input.GetAxis(slashAttack);
+        Rigidbody rb = GetComponent<Rigidbody>();
 
         Vector3 movement = new Vector3(-v, 0f, h);
 
@@ -129,24 +161,51 @@ public class MovementScript : MonoBehaviour {
 
 
 
-        if(hit == 1)
+        if(hit == 1 && !inJump && !inHit)
         {
             animator.SetBool("Hit", true);
+            StartInHit();
+            return;
         }
         else
         {
             animator.SetBool("Hit", false);
         }
 
-        if(slash == 1)
+        if(slash == 1 && !inJump && !inHit)
         {
             animator.SetBool("Slash", true);
+            StartCast();
+            return;
         }
         else
         {
             animator.SetBool("Slash", false);
         }
         
+        if(j>0 && !inJump && !inHit)
+        {
+            animator.SetBool("Jump", true);
+            if(rb != null)
+            {
+                rb.AddForce(rb.mass * new Vector3(0, jumpPower, 0),ForceMode.Impulse);
+            }
+            StartJump();
+            return;
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
+        }
         //Debug.Log(movement.normalized);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Ground"))
+        {
+            EndJump();
+        }
+
     }
 }
