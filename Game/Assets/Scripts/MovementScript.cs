@@ -12,6 +12,7 @@ public class MovementScript : MonoBehaviour {
     float hit;
     float slash;
     bool inHit;
+    bool inAir;
     [HideInInspector]
     public bool canCast;
     [HideInInspector]
@@ -39,6 +40,16 @@ public class MovementScript : MonoBehaviour {
     void EndInHit()
     {
         inHit = false;
+    }
+
+    void StartInAir()
+    {
+        inAir = true;
+    }
+
+    void EndInAir()
+    {
+        inAir = false;
     }
 
     public bool isInHit()
@@ -111,7 +122,7 @@ public class MovementScript : MonoBehaviour {
         }
 
 
-        if (hit == 1 && !inHit)
+        if (hit == 1 && !inHit && !inAir)
         {
             animator.SetBool("Hit", true);
             StartInHit();
@@ -122,7 +133,7 @@ public class MovementScript : MonoBehaviour {
             animator.SetBool("Hit", false);
         }
 
-        if(slash == 1 && !inHit)
+        if(slash == 1 && !inHit && !inAir)
         {
             animator.SetBool("Slash", true);
             StartInHit();
@@ -133,10 +144,11 @@ public class MovementScript : MonoBehaviour {
             animator.SetBool("Slash", false);
         }
         
-        if(j>0 && !inHit)
+        if(j>0 && !inHit && GetComponent<ManageUIScript>().EnergyBar.fillAmount == 1)
         {
+            GetComponent<ManageUIScript>().EnergyBar.fillAmount = 0;
             animator.SetBool("Jump", true);
-            StartInHit();
+            StartInAir();
             if(rb != null)
             {
                 rb.AddForce(rb.mass * new Vector3(0, jumpPower, 0),ForceMode.Impulse);
@@ -154,7 +166,7 @@ public class MovementScript : MonoBehaviour {
     {
         if(collision.collider.CompareTag("Ground"))
         {
-            EndInHit();
+            EndInAir();
         }
 
     }
