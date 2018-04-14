@@ -38,7 +38,15 @@ public class GameState : MonoBehaviour {
     public float ElapsedTimeBeforeDying = 0;
     // ~~~~ Suicide
 
-    
+    public bool Respawning = false;
+    public float RespawnTime = 5.0F;
+    public float ELapsedRespawnTime;
+
+    public Vector3 DefaultSpawnPoint;
+    public GameObject Player;
+    public bool MovedToDefault = false;
+    public float SpawnDontMoveTime = 1.0F;
+
     public float PlayerDelicious = 0;
 
 
@@ -102,6 +110,26 @@ public class GameState : MonoBehaviour {
             {
                 PlayerIsDead = false;
                 CurrentAbility = MarshmallowAbility.normal;
+                Respawning = true;
+                ELapsedRespawnTime = RespawnTime;
+                MovedToDefault = false;
+            }
+        }
+
+
+        if(Respawning)
+        {
+            ELapsedRespawnTime -= Time.deltaTime;
+
+            if (ELapsedRespawnTime < SpawnDontMoveTime && !MovedToDefault)
+            {
+                MovedToDefault = true;
+                Player.transform.position = DefaultSpawnPoint;
+            }
+
+            if (ELapsedRespawnTime < 0)
+            {
+                Respawning = false;
             }
         }
 

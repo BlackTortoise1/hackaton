@@ -16,6 +16,8 @@ public class ManageUIScript : MonoBehaviour {
     public float ColorChangeSpeed = 0.1F;
     public float GuardianHappinessDecreaseSpeed = 0.1F;
 
+    public GameObject BlurCube;
+
     // Use this for initialization
     void Start () {
         DeadTimeLeft.text = "";
@@ -57,5 +59,22 @@ public class ManageUIScript : MonoBehaviour {
             if (GameState.Instance.CurrentAbility == GameState.MarshmallowAbility.expanded)
                 Ability.text = "You can eat your enemies !!";
         }
+
+
+        if(GameState.Instance.Respawning && (GameState.Instance.ELapsedRespawnTime > GameState.Instance.SpawnDontMoveTime))
+        {
+            Color aux = BlurCube.GetComponent<Renderer>().material.color;
+            aux.a += Time.deltaTime/2;
+            BlurCube.GetComponent<Renderer>().material.color = aux;
+        }
+
+        if(GameState.Instance.MovedToDefault)
+        {
+            Color aux = BlurCube.GetComponent<Renderer>().material.color;
+            aux.a = 0;
+            BlurCube.GetComponent<Renderer>().material.color = aux;
+        }
+
+
     }
 }

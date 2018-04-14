@@ -11,6 +11,9 @@ public class CameraFallowScript : MonoBehaviour {
 
     private float OYOffset = 0;
 
+    private float MaxCameraShake = 0.0F;
+    private int CameraShakeDirection = 1;
+
 
     private Vector3 offset;         //Private variable to store the offset distance between the player and camera
 
@@ -24,6 +27,18 @@ public class CameraFallowScript : MonoBehaviour {
     //Update is called each frame
     void Update()
     {
+        if(GameState.Instance.Respawning && (GameState.Instance.ELapsedRespawnTime > GameState.Instance.SpawnDontMoveTime))
+        {
+            transform.position += new Vector3(0, 0, Time.deltaTime * CameraShakeDirection);
+            MaxCameraShake += Time.deltaTime * CameraShakeDirection;
+            if(Mathf.Abs(MaxCameraShake) > 0.2)
+            {
+                MaxCameraShake = 0;
+                CameraShakeDirection = (CameraShakeDirection == 1) ? -1 : 1;
+            }
+            return;
+        }
+
         transform.position = player.transform.TransformPoint(offset);
         
         float OxRot = verticalSpeed * Input.GetAxis("Mouse Y");
