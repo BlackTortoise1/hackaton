@@ -579,14 +579,7 @@ AnimationClip:
   m_IsEmpty: 0
   m_Events:
   - time: 0
-    functionName: StartInHit
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: EndInHit
+    functionName: AnimEnder
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

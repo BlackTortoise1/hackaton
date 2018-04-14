@@ -12,6 +12,8 @@ public class MovementScript : MonoBehaviour {
     float hit;
     float slash;
     bool inHit;
+    bool inJump;
+    bool inSquash;
     //Camera camera;
 
     //Settings
@@ -29,6 +31,26 @@ public class MovementScript : MonoBehaviour {
         inHit = true;
     }
 
+    void StartJump()
+    {
+        inJump = true;
+    }
+
+    void EndJump()
+    {
+        inJump = false;
+    }
+
+    void StartSquash()
+    {
+        inSquash = true;
+    }
+
+    void EndSquash()
+    {
+        inSquash = false;
+    }
+
     void EndInHit()
     {
         inHit = false;
@@ -43,6 +65,32 @@ public class MovementScript : MonoBehaviour {
     //   camera = FindObjectOfType<Camera>();
         animator = GetComponent<Animator>();
         inHit = false;
+        inJump = false;
+        inSquash = false;
+
+    }
+
+    IEnumerator AnimEnder()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        {
+            Debug.Log("PunchEnd");
+            EndInHit();
+        }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            Debug.Log("JumpEnd");
+            EndJump();
+        }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            Debug.Log("SquashEnd");
+            EndSquash();
+        }
     }
 
     // Update is called once per frame
