@@ -220,6 +220,25 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 54986525292669986, guid: 14b83f00ffb66bc4988b28022a58962d,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819689086826548, guid: 14b83f00ffb66bc4988b28022a58962d, type: 2}
+      propertyPath: m_Name
+      value: Cylinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 135658248513182868, guid: 14b83f00ffb66bc4988b28022a58962d,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 54986525292669986, guid: 14b83f00ffb66bc4988b28022a58962d,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14b83f00ffb66bc4988b28022a58962d, type: 2}
   m_IsPrefabParent: 0
@@ -236,7 +255,7 @@ GameObject:
   - component: {fileID: 1682684403}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

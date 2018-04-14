@@ -19,6 +19,7 @@ public class MovementScript : MonoBehaviour {
     //Settings
     public float speed = 1f;
     public float rotationSpeed = 0.5f;
+    public float jumpPower = 3f;
     public string horizontal;
     public string vertical;
     public string punchAttack;
@@ -164,13 +165,23 @@ public class MovementScript : MonoBehaviour {
             animator.SetBool("Jump", true);
             if(rb != null)
             {
-                rb.AddForce(rb.mass * new Vector3(0, 10, 0));
+                rb.AddForce(rb.mass * new Vector3(0, jumpPower, 0),ForceMode.Impulse);
             }
+            StartJump();
         }
         else
         {
             animator.SetBool("Jump", false);
         }
         //Debug.Log(movement.normalized);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Ground"))
+        {
+            EndJump();
+        }
+
     }
 }
