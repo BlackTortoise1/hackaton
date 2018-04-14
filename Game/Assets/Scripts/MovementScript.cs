@@ -102,10 +102,24 @@ public class MovementScript : MonoBehaviour {
 
         Vector3 movement = new Vector3(-v, 0f, h);
 
+
+        float mouseInput = Input.GetAxis("Mouse X");
+        Vector3 lookhere = new Vector3(0, mouseInput, 0);
+        transform.Rotate(lookhere);
+        
         if (movement != Vector3.zero && !inHit)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), rotationSpeed);
-            transform.position += transform.right * speed * Time.deltaTime;
+            if(v > 0)
+                transform.position += transform.right * speed * Time.deltaTime;
+            if(v < 0)
+                transform.position -= transform.right * speed * Time.deltaTime;
+
+            if (h < 0)
+                transform.position += transform.forward * speed * Time.deltaTime;
+            if (h > 0)
+                transform.position -= transform.forward * speed * Time.deltaTime;
+
+
             animator.SetBool("Walk", true);
         }
         else
