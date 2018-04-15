@@ -16,7 +16,7 @@ public class EnemyHit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.tag);
+        print(other.attachedRigidbody.tag);
         if (other.attachedRigidbody.CompareTag("enemy"))
         {
             DestroyObject(other.gameObject, 0.5F);
