@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Hero
   - Hot_COCO
+  - enemy
   layers:
   - Default
   - TransparentFX

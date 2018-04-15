@@ -6,12 +6,11 @@ using UnityEngine.AI;
 public class EnemyManager : MonoBehaviour {
 
     public GameObject enemyPrefab;
-    public float spawnTime = 3f;
+    public float spawnTime = 2f;
     public Transform[] spawnPoints;
 
     public Transform player;
     private int maxEnemiesOnScene = 10;
-    private int count = 0;
 
 	void Start () {
         StartCoroutine(spawnEnemy());
@@ -19,12 +18,17 @@ public class EnemyManager : MonoBehaviour {
 
 	IEnumerator spawnEnemy()
     {
-        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-        while(count < maxEnemiesOnScene) { 
-            yield return new WaitForSeconds(spawnTime);
-            Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            count += 1;
+        while (true)
+        {
+            while (GameObject.FindGameObjectsWithTag("enemy").Length < maxEnemiesOnScene)
+            {
+                int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+                yield return new WaitForSeconds(spawnTime);
+                Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+            }
+            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("enemy").Length < maxEnemiesOnScene);
         }
+        
     }
 
     void Update()
