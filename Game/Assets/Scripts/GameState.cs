@@ -119,6 +119,7 @@ public class GameState : MonoBehaviour {
 
                 Player.GetComponent<ChangeColor>().ChangeColorIn(CurrentAbility);
 
+                Player.GetComponent<ManageUIScript>().GuardianHappinessBar.fillAmount += 0.5f;
                 Player.GetComponent<AudioSource>().Play();
             }
         }
