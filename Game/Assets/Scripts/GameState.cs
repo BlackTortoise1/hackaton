@@ -99,6 +99,8 @@ public class GameState : MonoBehaviour {
                 ElapsedDeadTime = DeadTime;
                 PlayerCommittedSuicide = false;
                 CurrentAbility = DesiredAbility;
+
+                Player.GetComponent<ChangeColor>().ChangeColorIn(CurrentAbility);
             }
         }
 
@@ -113,6 +115,8 @@ public class GameState : MonoBehaviour {
                 Respawning = true;
                 ELapsedRespawnTime = RespawnTime;
                 MovedToDefault = false;
+
+                Player.GetComponent<ChangeColor>().ChangeColorIn(CurrentAbility);
             }
         }
 

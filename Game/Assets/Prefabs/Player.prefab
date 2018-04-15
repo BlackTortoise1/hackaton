@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 54986525292669986}
   - component: {fileID: 114729579299232196}
   - component: {fileID: 114084414322333042}
+  - component: {fileID: 114596097235245946}
   m_Layer: 0
   m_Name: Player
   m_TagString: Hero
@@ -225,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093689945191778}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 6.725331}
+  m_LocalPosition: {x: 8.94, y: 2.33, z: 6.92}
   m_LocalScale: {x: 0.45692873, y: 0.45692873, z: 0.45692873}
   m_Children:
   - {fileID: 4617161601821520}
@@ -530,6 +531,23 @@ MonoBehaviour:
   slashAttack: P0_Fire2
   FireAttack: {fileID: 1476112772782752, guid: 419e25d57e8b8404fb13b316097b1da2, type: 2}
   IceAttack: {fileID: 1486934606217302, guid: 2f3c3377bed80274991b45bb3124618f, type: 2}
+--- !u!114 &114596097235245946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093689945191778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5cf3fe88f06854c9051c5e6dff4e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj1: {fileID: 1039097011026114}
+  obj2: {fileID: 1883618979247020}
+  obj3: {fileID: 1079420000150544}
+  HotAbilityColor: {x: 255, y: 0, z: 0}
+  IceAbilityColor: {x: 0, y: 0, z: 0}
+  ExpandAbilityColor: {x: 0, y: 0, z: 0}
 --- !u!114 &114729579299232196
 MonoBehaviour:
   m_ObjectHideFlags: 1
