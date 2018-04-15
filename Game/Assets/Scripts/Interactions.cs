@@ -16,12 +16,11 @@ public class Interactions : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        print("triggered");
+        //print("triggered");
         if(other.attachedRigidbody.CompareTag("Hero"))
         {
-            print("player");
+            //print("player");
             //send event to player
-            print(other.gameObject.name);
             other.attachedRigidbody.gameObject.GetComponent<PlayerActionsScript>().EnteredTrigger(tag);
 
         }
@@ -29,6 +28,8 @@ public class Interactions : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (other.attachedRigidbody.CompareTag("Hero"))
+            other.attachedRigidbody.gameObject.GetComponent<PlayerActionsScript>().LeftTrigger(tag);
+
     }
 }
