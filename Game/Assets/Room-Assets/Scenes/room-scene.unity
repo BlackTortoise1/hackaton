@@ -1658,6 +1658,11 @@ Prefab:
       propertyPath: BlurCube
       value: 
       objectReference: {fileID: 1200120058}
+    - target: {fileID: 95354735624496900, guid: 14b83f00ffb66bc4988b28022a58962d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14b83f00ffb66bc4988b28022a58962d, type: 2}
   m_IsPrefabParent: 0
@@ -2108,7 +2113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 92186488}
-  verticalSpeed: 0.1
+  verticalSpeed: 0.05
   maxOYOffset: 1.1
   minOYOffset: -1.5
 --- !u!1001 &923906139

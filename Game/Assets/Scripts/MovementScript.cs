@@ -109,7 +109,7 @@ public class MovementScript : MonoBehaviour {
 
         
         
-        if (movement != Vector3.zero && !inHit)
+        if (movement != Vector3.zero)
         {
             animator.SetBool("Walk", true);
             if (v != 0)
@@ -127,7 +127,7 @@ public class MovementScript : MonoBehaviour {
         if (hit == 1)
         {
             animator.SetBool("Hit", true);
-            inHit = true;
+            //inHit = true;
             //return;
         }
         else
@@ -138,7 +138,7 @@ public class MovementScript : MonoBehaviour {
         if(slash == 1)
         {
             animator.SetBool("Slash", true);
-            inHit = true;
+            //inHit = true;
         }
         else
         {
