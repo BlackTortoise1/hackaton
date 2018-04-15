@@ -11,21 +11,20 @@ public class EnemyManager : MonoBehaviour {
 
     public Transform player;
     private int maxEnemiesOnScene = 10;
-    private int count;
+    private int count = 0;
 
 	void Start () {
-        count = 0;
-        InvokeRepeating("spawnEnemy", spawnTime, spawnTime);
+        StartCoroutine(spawnEnemy());
 	}
 
-	void spawnEnemy()
+	IEnumerator spawnEnemy()
     {
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-        if (count < 10)
+        while(count < maxEnemiesOnScene) { 
+            yield return new WaitForSeconds(spawnTime);
             Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        else
-            CancelInvoke();
-        count += 1;
+            count += 1;
+        }
     }
 
     void Update()
