@@ -101,6 +101,7 @@ public class GameState : MonoBehaviour {
                 CurrentAbility = DesiredAbility;
 
                 Player.GetComponent<ChangeColor>().ChangeColorIn(CurrentAbility);
+
             }
         }
 
@@ -117,6 +118,8 @@ public class GameState : MonoBehaviour {
                 MovedToDefault = false;
 
                 Player.GetComponent<ChangeColor>().ChangeColorIn(CurrentAbility);
+
+                Player.GetComponent<AudioSource>().Play();
             }
         }
 
