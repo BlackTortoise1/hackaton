@@ -79,9 +79,17 @@ public class MovementScript : MonoBehaviour {
         if (name.CompareTo("SpellCast") == 0)
         {
             Debug.Log("SpellCast");
-            if (type == 1)
+            if (GameState.Instance.CurrentAbility == GameState.MarshmallowAbility.fire)
             {
                 GameObject attack = Instantiate(FireAttack);
+                attack.transform.position = transform.position + transform.right.normalized;
+                attack.transform.LookAt(transform);
+                attack.transform.Rotate(0, 180, 0);
+                Destroy(attack, 5);
+            }
+            if(GameState.Instance.CurrentAbility == GameState.MarshmallowAbility.ice)
+            {
+                GameObject attack = Instantiate(IceAttack);
                 attack.transform.position = transform.position + transform.right.normalized;
                 attack.transform.LookAt(transform);
                 attack.transform.Rotate(0, 180, 0);
