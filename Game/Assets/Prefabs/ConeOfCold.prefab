@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4850133975188516}
   - component: {fileID: 135898853403183116}
   - component: {fileID: 23220327703383026}
+  - component: {fileID: 114673136565584700}
   m_Layer: 0
   m_Name: ConeOfCold
   m_TagString: Untagged
@@ -103,6 +104,17 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &114673136565584700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486934606217302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27be07d13180d840bf43e1b108f674a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135898853403183116
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -110,8 +122,8 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486934606217302}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
