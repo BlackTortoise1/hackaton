@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4992020096374100}
   - component: {fileID: 135105559494156530}
   - component: {fileID: 23148099525969730}
+  - component: {fileID: 114371019085542278}
   m_Layer: 0
   m_Name: ConeOfTooWarm
   m_TagString: Untagged
@@ -103,6 +104,17 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &114371019085542278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1476112772782752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27be07d13180d840bf43e1b108f674a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135105559494156530
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -110,10 +122,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476112772782752}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198982503002985958
 ParticleSystem:
