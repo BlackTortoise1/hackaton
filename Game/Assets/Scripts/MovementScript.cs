@@ -92,6 +92,7 @@ public class MovementScript : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
+        //Debug.Log(inHit);
         h = Input.GetAxis(horizontal);
         v = Input.GetAxis(vertical);
         float j = Input.GetAxis("Jump");
@@ -106,15 +107,16 @@ public class MovementScript : MonoBehaviour {
         Vector3 lookhere = new Vector3(0, mouseInput, 0);
         transform.Rotate(lookhere);
 
-        if (v != 0)
-            transform.position += v * transform.right * speed * Time.deltaTime;   
-        if (h != 0)
-            transform.position -= h * transform.forward * speed * Time.deltaTime;
-
+        
         
         if (movement != Vector3.zero && !inHit)
         {
             animator.SetBool("Walk", true);
+            if (v != 0)
+                transform.position += v * transform.right * speed * Time.deltaTime;
+            if (h != 0)
+                transform.position -= h * transform.forward * speed * Time.deltaTime;
+
         }
         else
         {
@@ -122,33 +124,31 @@ public class MovementScript : MonoBehaviour {
         }
 
 
-        if (hit == 1 && !inHit)
+        if (hit == 1)
         {
             animator.SetBool("Hit", true);
-            StartInHit();
-            return;
+            inHit = true;
+            //return;
         }
         else
         {
             animator.SetBool("Hit", false);
         }
 
-        if(slash == 1 && !inHit)
+        if(slash == 1)
         {
             animator.SetBool("Slash", true);
-            StartInHit();
-            return;
+            inHit = true;
         }
         else
         {
             animator.SetBool("Slash", false);
         }
         
-        if(j>0 && !inHit && GetComponent<ManageUIScript>().EnergyBar.fillAmount == 1)
+        if(j>0 && GetComponent<ManageUIScript>().EnergyBar.fillAmount == 1)
         {
             GetComponent<ManageUIScript>().EnergyBar.fillAmount = 0;
             animator.SetBool("Jump", true);
-            StartInAir();
             if(rb != null)
             {
                 rb.AddForce(rb.mass * new Vector3(0, jumpPower, 0),ForceMode.Impulse);
@@ -166,7 +166,7 @@ public class MovementScript : MonoBehaviour {
     {
         if(collision.collider.CompareTag("Ground"))
         {
-            EndInAir();
+            //EndInAir();
         }
 
     }
