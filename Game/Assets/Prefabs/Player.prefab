@@ -522,7 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canCast: 0
   type: 0
-  speed: 1
+  speed: 2
   rotationSpeed: 0.5
   jumpPower: 3
   horizontal: Horizontal0

@@ -9,6 +9,7 @@ TagManager:
   - Hero
   - Hot_COCO
   - enemy
+  - Freezer
   layers:
   - Default
   - TransparentFX

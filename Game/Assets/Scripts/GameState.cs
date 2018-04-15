@@ -26,7 +26,7 @@ public class GameState : MonoBehaviour {
     // This is the time where he can use his new ability
     public bool PlayerIsDead= false;
     // How long the player remains dead before respawning
-    private float DeadTime = 5.0F;
+    private float DeadTime = 15;
     public float ElapsedDeadTime = 0;
     // ~~~~ DEAD
 
